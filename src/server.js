@@ -12,8 +12,9 @@ const app = express()
 
 
 // Middleware
+app.use( express.json() )
 app.use( (req, res, next) => {
-	console.log(`${req.method}  ${req.url}  `)
+	console.log(`${req.method}  ${req.url}  `, req.body)
 	next()
 } )
 

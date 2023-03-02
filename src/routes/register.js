@@ -1,12 +1,50 @@
 const express = require('express')
 const router = express.Router()
 
+const fakeDb = require('../database.js')
 
+
+// Step 1: fake database
+// Step 2: add real database
+let fakeIdCounter = 1
 
 router.post('/', (req, res) => {
 	console.log('register.js: POST /')
-	res.sendStatus(400)
+	// Is username available?
+	// Is password secure ?
+	const { username, password } =  req.body
+	// const username = req.body.username
+
+	let existingUser = fakeDb.find(user => user.username === username)
+
+	if( existingUser ) {
+		// Usernames match, username not available
+		console.log('Username not available')
+		res.sendStatus(400)
+		return
+	}
+
+	if( !isValidPassword(password) ) {
+		console.log('Too easy password')
+		res.sendStatus(400)
+		return
+	}
+
+	fakeDb.push({
+		username: username,
+		password: password,
+		id: fakeIdCounter++
+	})
+	res.sendStatus(200)
+	// It's also possible to send a file or render a view
 })
+
+function isValidPassword(pw) {
+	// What makes a password too simple?
+	// You decide, but good security practices exist
+	// Examples: minimum 8 characters; mix of capital+small letters, numbers and special characters
+	return pw.length >= 8
+}
 
 
 module.exports = router
