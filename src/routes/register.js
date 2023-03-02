@@ -37,6 +37,9 @@ function isValidPassword(pw) {
 	// What makes a password too simple?
 	// You decide, but good security practices exist
 	// Examples: minimum 8 characters; mix of capital+small letters, numbers and special characters
+	if( !pw ) {
+		return false
+	}
 	return pw.length >= 8
 }
 

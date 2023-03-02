@@ -6,19 +6,22 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="" type="image/x-icon">
 	<title> Authentication demo </title>
+	<script src="script.js" type="module"></script>
 </head>
 <body>
 	<h1> Authentication demo </h1>
 
 	<section>
-		username
-		password
-		button: register
-		button: login
+		<label> Name </label>
+		<input id="inputUsername" type="text" />
+		<label> Password </label>
+		<input id="inputPassword" type="password" />
+		<button id="btnRegister" type="button"> Register </button>
+		<button id="btnLogin" type="button"> Login </button>
 	</section>
 
 	<section>
-		button: get protected data
+		<button id="btnSecret" type="button"> Get protected data </button>
 	</section>
 
 </body>
