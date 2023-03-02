@@ -1,23 +1,21 @@
 const express = require('express')
 const router = express.Router()
 
-const fakeDb = require('../database.js')
+const { userExists, registerUser } = require('../database.js')
 
 
 // Step 1: fake database
 // Step 2: add real database
 let fakeIdCounter = 1
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
 	console.log('register.js: POST /')
 	// Is username available?
 	// Is password secure ?
 	const { username, password } =  req.body
 	// const username = req.body.username
 
-	let existingUser = fakeDb.find(user => user.username === username)
-
-	if( existingUser ) {
+	if( await userExists(username) ) {
 		// Usernames match, username not available
 		console.log('Username not available')
 		res.sendStatus(400)
@@ -30,11 +28,7 @@ router.post('/', (req, res) => {
 		return
 	}
 
-	fakeDb.push({
-		username: username,
-		password: password,
-		id: fakeIdCounter++
-	})
+	await registerUser(username, password)
 	res.sendStatus(200)
 	// It's also possible to send a file or render a view
 })
