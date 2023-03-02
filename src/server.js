@@ -1,7 +1,7 @@
 // Imports
 const express = require('express')
 const registerRoute = require('./routes/register.js')
-// const loginRoute = require('./routes/login.js')
+const loginRoute = require('./routes/login.js')
 
 
 
@@ -25,7 +25,7 @@ app.use( (req, res, next) => {
 app.use('/register', registerRoute)
 
 // POST /login
-// app.use('/login', loginRoute)
+app.use('/login', loginRoute)
 
 
 

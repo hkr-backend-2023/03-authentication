@@ -31,5 +31,17 @@ async function registerUser(username, password) {
 	})
 }
 
+async function validateLogin(username, password) {
+	const sql = 'SELECT * FROM Users WHERE username = $username AND password = $password '
+	const params = { $username: username, $password: password }
 
-module.exports = { userExists, registerUser }
+	return new Promise((resolve, reject) => {
+		db.all(sql, params, (error, rows) => {
+			if( error ) reject(error)
+			else resolve(rows.length === 1)
+		})
+	})
+}
+
+
+module.exports = { userExists, registerUser, validateLogin }
