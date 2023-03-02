@@ -4,6 +4,8 @@ const registerRoute = require('./routes/register.js')
 const loginRoute = require('./routes/login.js')
 const secretApiRoute = require('./routes/secret.js')
 
+// Realistic example of an endpoint:
+// /api/movies , GET is public, POST+PUT+DELETE needs authentication
 
 
 // Setup

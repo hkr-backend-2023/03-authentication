@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken')
 
 
+// In a realistic app, the secret would be stored as en ENVIRONMENT VARIABLE
+// Use the package "dotenv" to load an ".env" file
 const secret = '81340d44466da2782c775178bc3b2d50ca433831d57e0ff7a25d1e85eb8e4a0a629a0ea4d14b5176d8ea4529368fec8d865dfcad0dd0afbf68a161b14a048549'
 // require('crypto').randomBytes(64).toString('hex')
 // crypto.randomBytes(64).toString('hex')  <- in browser or Node console
